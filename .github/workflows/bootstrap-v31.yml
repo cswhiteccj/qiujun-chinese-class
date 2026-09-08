@@ -20,6 +20,9 @@ jobs:
 
       - name: Rebuild customization patch
         run: |
+          if [ "$(wc -c < _bootstrap/patch-01.b64)" -eq 20001 ]; then
+            truncate -s 20000 _bootstrap/patch-01.b64
+          fi
           cat _bootstrap/patch-*.b64 | base64 -d | gzip -d > /tmp/qiujun.patch
           test -s /tmp/qiujun.patch
 
@@ -28,8 +31,8 @@ jobs:
           git clone --depth 1 https://github.com/lienyujen/InterAct.git /tmp/interact
           rsync -a --exclude='.git' /tmp/interact/ ./
           patch -p1 < /tmp/qiujun.patch
-          rm -rf _bootstrap
-          rm -f .github/workflows/bootstrap-v31.yml
+          rm -rf _bootstrap _payload
+          rm -f .github/workflows/bootstrap-v31.yml .github/workflows/payload-check.yml
 
       - name: Commit complete V3.1 source
         run: |
