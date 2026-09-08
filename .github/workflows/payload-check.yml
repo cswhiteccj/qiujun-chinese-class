@@ -1,0 +1,18 @@
+name: Payload Check
+on:
+  push:
+    paths:
+      - '.github/workflows/payload-check.yml'
+      - '_payload/**'
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          echo 'BOOTSTRAP SIZES'
+          wc -c _bootstrap/patch-*.b64 || true
+          echo 'PAYLOAD SIZES'
+          wc -c _payload/*.b64 || true
+          echo 'BOOTSTRAP PREFIX/SUFFIX'
+          for f in _bootstrap/patch-*.b64; do echo "$f $(head -c 8 "$f") $(tail -c 8 "$f")"; done
