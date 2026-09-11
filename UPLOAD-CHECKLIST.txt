@@ -1,0 +1,8 @@
+秋君老師的華語教學 V3.1 完整上傳驗證
+
+[必須存在] src/components/AiChineseQuestionModal.tsx
+[必須存在] src/components/QuestionBankModal.tsx
+[必須存在] src/routes/PresenterPage.tsx
+[必須存在] supabase/functions/generate-chinese-questions/index.ts
+
+GitHub 上傳後，請確認 src 資料夾下不只有 main.tsx，而是還有 components、routes、lib 等子資料夾。
