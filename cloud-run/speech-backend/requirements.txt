@@ -1,0 +1,5 @@
+fastapi==0.115.12
+uvicorn==0.34.2
+google-cloud-speech==2.33.0
+google-cloud-texttospeech==2.27.0
+httpx==0.28.1
